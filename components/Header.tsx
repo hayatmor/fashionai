@@ -13,12 +13,18 @@ export default function Header() {
       <a href="/" className="font-serif text-2xl tracking-wide text-charcoal">
         Fashion AI
       </a>
-      <nav>
+      <nav className="flex items-center gap-8">
         <a
           href="#studios"
           className="text-sm tracking-widest uppercase text-muted transition-colors hover:text-charcoal"
         >
           Gallery
+        </a>
+        <a
+          href="/presentation.html"
+          className="text-sm tracking-widest uppercase text-muted transition-colors hover:text-charcoal"
+        >
+          Presentation
         </a>
       </nav>
     </motion.header>

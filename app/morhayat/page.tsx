@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail,
   Phone,
-  Linkedin,
   Share2,
   Download,
   Check,
@@ -22,8 +21,6 @@ const CONTACT = {
   email: "hayatmor@gmail.com",
   phone: "+972-542600177",
   phoneClean: "+972542600177",
-  linkedin: "https://www.linkedin.com/in/mor-hayat/",
-  linkedinLabel: "linkedin.com/in/mor-hayat",
   website: "https://fashionai.studio",
   location: "Tel Aviv, Israel",
 };
@@ -35,16 +32,17 @@ ORG:${CONTACT.company}
 TITLE:${CONTACT.title}
 TEL;TYPE=CELL:${CONTACT.phoneClean}
 EMAIL:${CONTACT.email}
-URL:${CONTACT.linkedin}
+URL:${CONTACT.website}
 ADR;TYPE=WORK:;;${CONTACT.location};;;;
 END:VCARD`;
 
 function QrCodeImage() {
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=C9A96E&bgcolor=0a0a0a&data=${encodeURIComponent(CONTACT.linkedin)}`;
+  const cardUrl = typeof window !== "undefined" ? window.location.href : CONTACT.website;
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=C9A96E&bgcolor=0a0a0a&data=${encodeURIComponent(cardUrl)}`;
   return (
     <img
       src={qrUrl}
-      alt="QR Code linking to LinkedIn profile"
+      alt="QR Code — contact card"
       width={180}
       height={180}
       className="rounded-xl"
@@ -166,13 +164,6 @@ export default function BusinessCard() {
               delay={0.55}
             />
             <ContactRow
-              icon={<Linkedin size={18} />}
-              label={CONTACT.linkedinLabel}
-              href={CONTACT.linkedin}
-              delay={0.6}
-              external
-            />
-            <ContactRow
               icon={<MapPin size={18} />}
               label={CONTACT.location}
               href={`https://maps.google.com/?q=${encodeURIComponent(CONTACT.location)}`}
@@ -213,7 +204,7 @@ export default function BusinessCard() {
                       <QrCodeImage />
                     </div>
                     <p className="mt-3 text-[10px] text-[#555] tracking-wider uppercase">
-                      Scan to view LinkedIn profile
+                      Scan to save contact
                     </p>
                   </div>
                 </motion.div>
@@ -288,7 +279,7 @@ export default function BusinessCard() {
                 <QrCodeImage />
               </div>
               <p className="mt-3 text-xs text-[#888]">
-                Scan to connect on LinkedIn
+                Scan to save contact
               </p>
             </motion.div>
           </motion.div>
