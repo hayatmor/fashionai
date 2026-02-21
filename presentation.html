@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fashion AI — MIPEL 129</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" />
+<style>
+  :root {
+    --gold: #C9A96E;
+    --gold-light: #E2CFA3;
+    --gold-dark: #9A7B4F;
+    --bg: #080808;
+    --bg-card: #111;
+    --text: #f0f0f0;
+    --muted: #555;
+    --red: #c0392b;
+  }
+
+  .reveal {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    color: var(--text);
+  }
+  .reveal .slides { text-align: left; }
+  .reveal .slides section { padding: 48px 72px; }
+  .reveal h1, .reveal h2, .reveal h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+  .reveal h1 { font-size: 3.6em; line-height: 1.05; }
+  .reveal h2 { font-size: 2.2em; line-height: 1.1; margin-bottom: 0.5em; }
+  .reveal h3 { font-size: 1em; color: var(--gold); margin-bottom: 0.2em; font-weight: 400; }
+  .reveal p, .reveal li { font-size: 0.7em; line-height: 1.8; color: #aaa; }
+  .reveal ul { list-style: none; padding: 0; }
+  .reveal .gold { color: var(--gold); }
+  .reveal .muted { color: var(--muted); font-size: 0.5em; }
+  .reveal .center-slide { text-align: center; }
+  .reveal .center-slide h1, .reveal .center-slide h2, .reveal .center-slide p { text-align: center; }
+
+  .big-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 4em;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .big-number span {
+    font-size: 0.22em; color: #777;
+    font-family: 'Inter', sans-serif; font-weight: 300;
+    display: block; margin-top: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid #1a1a1a;
+    border-radius: 10px;
+    padding: 20px 22px;
+    transition: all 0.5s ease;
+  }
+  .card:hover {
+    border-color: #333;
+    transform: translateY(-2px);
+  }
+  .card h3 { font-size: 0.72em; margin-bottom: 4px; letter-spacing: 0; }
+  .card p { font-size: 0.48em; color: var(--muted); line-height: 1.5; }
+
+  .stripe {
+    height: 1px; width: 40px;
+    background: var(--gold);
+    margin-bottom: 20px;
+  }
+  .bottom-line {
+    margin-top: 32px; padding-top: 16px;
+    border-top: 1px solid #1a1a1a; text-align: center;
+  }
+  .bottom-line p { font-size: 0.65em; color: var(--gold); font-weight: 400; letter-spacing: 0.02em; }
+
+  .shimmer {
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+  @keyframes shimmer { to { background-position: 200% center; } }
+
+  .pulse { animation: pulse-glow 3s ease-in-out infinite; }
+  @keyframes pulse-glow {
+    0%,100% { box-shadow: 0 0 0 0 rgba(201,169,110,0); }
+    50% { box-shadow: 0 0 40px 0 rgba(201,169,110,0.08); }
+  }
+
+  .float { animation: float-y 4s ease-in-out infinite; }
+  @keyframes float-y { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+
+  .list-item {
+    display: flex; align-items: center; gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid #141414;
+  }
+  .list-item:last-child { border: none; }
+  .list-bullet {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+    opacity: 0.6;
+  }
+  .list-bullet.red { background: var(--red); }
+  .list-text { font-size: 0.65em; color: #bbb; }
+  .list-text strong { color: #fff; font-weight: 500; }
+
+  .role-list { list-style: none; padding: 0; margin: 0; }
+  .role-list li {
+    font-size: 0.62em; padding: 10px 0;
+    border-bottom: 1px solid #141414;
+    color: #999; display: flex; align-items: center; gap: 12px;
+  }
+  .role-list li::before { display: none; }
+  .role-list li:last-child { border: none; }
+  .role-mark {
+    width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+  }
+  .role-mark.off { background: var(--red); opacity: 0.7; }
+  .role-mark.on { background: var(--gold); opacity: 0.8; }
+
+  .flow-row { display: flex; align-items: center; justify-content: center; gap: 0; margin: 28px 0; }
+  .flow-step {
+    background: var(--bg-card); border: 1px solid #1a1a1a; border-radius: 10px;
+    padding: 24px 28px; text-align: center; width: 180px; transition: all 0.4s;
+  }
+  .flow-step:hover { border-color: #333; }
+  .flow-step .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2em; font-weight: 600; color: var(--gold);
+    margin-bottom: 8px; display: block;
+  }
+  .flow-step .step-label { font-size: 0.58em; font-weight: 500; color: #ddd; letter-spacing: 0.02em; }
+  .flow-step .step-sub { font-size: 0.42em; color: var(--muted); margin-top: 4px; }
+  .flow-divider {
+    width: 40px; height: 1px; background: #333; flex-shrink: 0;
+  }
+
+  .contact-row { display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; margin-top: 10px; }
+  .contact-item {
+    font-size: 0.55em; color: #888; text-decoration: none;
+    transition: color 0.3s; letter-spacing: 0.01em;
+  }
+  a.contact-item:hover { color: var(--gold); }
+  .contact-sep { color: #2a2a2a; font-size: 0.5em; }
+
+  .meeting-card {
+    background: var(--bg-card);
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 32px 44px;
+    text-align: center;
+    max-width: 520px;
+    margin: 28px auto 0;
+  }
+
+  .reveal .slide-number { color: #333; font-size: 10px; }
+  .reveal .fragment.grow-in { opacity: 0; transform: scale(0.95); transition: all 0.6s ease; }
+  .reveal .fragment.grow-in.visible { opacity: 1; transform: scale(1); }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ===== 1: TITLE ===== -->
+<section class="center-slide" data-background-color="#080808" data-transition="zoom">
+  <div class="stripe" style="margin:0 auto 32px;"></div>
+  <h1 style="font-size:4.5em;">Fashion <span class="shimmer">AI</span></h1>
+  <p class="fragment fade-up" style="font-size:0.95em; color:#999; margin-top:28px; letter-spacing:0.05em; font-weight:300;">
+    Your Entire Creative Team. One Platform.
+  </p>
+  <br/><br/>
+  <p class="fragment fade-up muted" style="letter-spacing:0.2em; text-transform:uppercase;">
+    MIPEL 129 &nbsp;&nbsp;&nbsp; Milan &nbsp;&nbsp;&nbsp; February 2026
+  </p>
+</section>
+
+<!-- ===== 2: THE PROBLEM ===== -->
+<section data-background-color="#080808" data-auto-animate>
+  <div class="stripe"></div>
+  <h2 data-id="t2">The Problem</h2>
+  <br/>
+  <div class="fragment fade-up list-item">
+    <span class="list-bullet red"></span>
+    <span class="list-text"><strong>Photographer &amp; Studio</strong></span>
+  </div>
+  <div class="fragment fade-up list-item">
+    <span class="list-bullet red"></span>
+    <span class="list-text"><strong>Model &amp; Stylist</strong></span>
+  </div>
+  <div class="fragment fade-up list-item">
+    <span class="list-bullet red"></span>
+    <span class="list-text"><strong>Photo Editor &amp; Retoucher</strong></span>
+  </div>
+  <div class="fragment fade-up list-item">
+    <span class="list-bullet red"></span>
+    <span class="list-text"><strong>2&ndash;4 weeks</strong> from shoot to final assets</span>
+  </div>
+  <div class="fragment fade-up bottom-line">
+    <p style="color:var(--red); font-weight:300;">Expensive &nbsp;&middot;&nbsp; Slow &nbsp;&middot;&nbsp; Doesn&rsquo;t scale</p>
+  </div>
+</section>
+
+<!-- ===== 3: THE SOLUTION ===== -->
+<section class="center-slide" data-background-color="#080808" data-auto-animate>
+  <div class="stripe" style="margin:0 auto 28px;"></div>
+  <h2 data-id="t2" style="font-size:2.8em;">One Photo In.<br/><span class="shimmer">Unlimited Creatives Out.</span></h2>
+  <br/><br/>
+  <div class="fragment fade-up flow-row">
+    <div class="flow-step">
+      <span class="step-num">01</span>
+      <div class="step-label">Upload</div>
+      <div class="step-sub">One product photo</div>
+    </div>
+    <div class="flow-divider"></div>
+    <div class="flow-step" style="border-color:var(--gold);">
+      <span class="step-num">02</span>
+      <div class="step-label">Generate</div>
+      <div class="step-sub">Proprietary AI engine</div>
+    </div>
+    <div class="flow-divider"></div>
+    <div class="flow-step">
+      <span class="step-num">03</span>
+      <div class="step-label">9 Styles</div>
+      <div class="step-sub">~30 seconds each</div>
+    </div>
+    <div class="flow-divider"></div>
+    <div class="flow-step">
+      <span class="step-num">04</span>
+      <div class="step-label">Publish</div>
+      <div class="step-sub">Anywhere</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4: WHAT WE REPLACE ===== -->
+<section data-background-color="#080808">
+  <div class="stripe"></div>
+  <h2>What We Replace</h2>
+  <br/>
+  <div class="grid-2">
+    <div class="fragment fade-right card">
+      <h3 style="color:var(--red); font-weight:600;">Traditional</h3>
+      <ul class="role-list">
+        <li><span class="role-mark off"></span> Photographer &amp; Studio</li>
+        <li><span class="role-mark off"></span> Model &amp; Styling</li>
+        <li><span class="role-mark off"></span> Photo Editor</li>
+        <li><span class="role-mark off"></span> Graphic Designer</li>
+        <li><span class="role-mark off"></span> Creative Director</li>
+      </ul>
+      <p style="margin-top:14px; font-size:0.55em; color:var(--muted);">
+        Weeks of coordination
+      </p>
+    </div>
+    <div class="fragment fade-left card pulse" style="border-color:#2a2a2a;">
+      <h3 style="font-weight:600;">Fashion AI</h3>
+      <ul class="role-list">
+        <li><span class="role-mark on"></span> Upload one photo</li>
+        <li><span class="role-mark on"></span> Pick a style</li>
+        <li><span class="role-mark on"></span> Click Generate</li>
+        <li><span class="role-mark on"></span> Download &amp; publish</li>
+      </ul>
+      <p style="margin-top:14px; font-size:0.55em; color:var(--gold);">
+        30 seconds
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5: 9 STUDIOS ===== -->
+<section data-background-color="#080808">
+  <div class="stripe"></div>
+  <h2>9 Studios. One Photo.</h2>
+  <br/>
+  <div class="grid-3">
+    <div class="fragment grow-in card"><h3>E-Commerce</h3><p>White packshot</p></div>
+    <div class="fragment grow-in card"><h3>Social 1:1</h3><p>Instagram-ready</p></div>
+    <div class="fragment grow-in card"><h3>Editorial Model</h3><p>Female model shot</p></div>
+    <div class="fragment grow-in card"><h3>Lifestyle Flatlay</h3><p>Top-down editorial</p></div>
+    <div class="fragment grow-in card"><h3>Venezia</h3><p>Venice golden hour</p></div>
+    <div class="fragment grow-in card"><h3>Macro Logo</h3><p>Detail close-up</p></div>
+    <div class="fragment grow-in card"><h3>Vibe</h3><p>Model &amp; bag intimate</p></div>
+    <div class="fragment grow-in card"><h3>Chair &amp; Model</h3><p>Studio furniture</p></div>
+    <div class="fragment grow-in card"><h3>Male Model</h3><p>Crossbody unisex</p></div>
+  </div>
+  <div class="fragment fade-up bottom-line">
+    <p>1 photo &times; 9 studios = 9 campaign images</p>
+  </div>
+</section>
+
+<!-- ===== 6: SPEED & SCALE ===== -->
+<section data-background-color="#080808">
+  <div class="stripe"></div>
+  <h2>Speed &amp; Scale</h2>
+  <br/>
+  <div class="grid-2" style="align-items:start;">
+    <div>
+      <div class="fragment fade-up" style="margin-bottom:36px;">
+        <div class="big-number float"><span class="counter" data-target="30">0</span>s<span>per image</span></div>
+      </div>
+      <div class="fragment fade-up" style="margin-bottom:36px;">
+        <div class="big-number float" style="animation-delay:0.5s;"><span class="counter" data-target="10">0</span>&times;<span>faster to market</span></div>
+      </div>
+      <div class="fragment fade-up">
+        <div class="big-number float" style="animation-delay:1s;"><span class="counter" data-target="450">0</span><span>images from 50 SKUs in one afternoon</span></div>
+      </div>
+    </div>
+    <div class="fragment fade-left" style="padding-top:10px;">
+      <div class="list-item">
+        <span class="list-bullet"></span>
+        <span class="list-text">Instant iterations, zero waste</span>
+      </div>
+      <div class="list-item">
+        <span class="list-bullet"></span>
+        <span class="list-text">Unlimited variations per SKU</span>
+      </div>
+      <div class="list-item">
+        <span class="list-bullet"></span>
+        <span class="list-text">Campaign-ready output</span>
+      </div>
+      <div class="list-item">
+        <span class="list-bullet"></span>
+        <span class="list-text">Full seasonal catalog in hours</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7: BEYOND ===== -->
+<section data-background-color="#080808">
+  <div class="stripe"></div>
+  <h2>Beyond Photography</h2>
+  <br/>
+  <div class="grid-3">
+    <div class="fragment fade-up card"><h3>Video</h3><p>Reels &amp; campaigns from one photo</p></div>
+    <div class="fragment fade-up card"><h3>Design Ideation</h3><p>New concepts from sketches</p></div>
+    <div class="fragment fade-up card"><h3>Seasonal Scale</h3><p>Entire catalog in hours</p></div>
+    <div class="fragment fade-up card"><h3>Social Content</h3><p>Full calendar, instantly</p></div>
+    <div class="fragment fade-up card"><h3>Localized</h3><p>Different styles per market</p></div>
+    <div class="fragment fade-up card"><h3>Unlimited Ideas</h3><p>Test 100, commit to 1</p></div>
+  </div>
+</section>
+
+<!-- ===== 8: LIVE DEMO ===== -->
+<section class="center-slide" data-background-color="#080808" data-transition="zoom">
+  <div class="fragment fade-up">
+    <div class="stripe" style="margin:0 auto 28px;"></div>
+    <h2 style="font-size:2.8em; margin-bottom:0.4em;">Let&rsquo;s Try It <span class="shimmer">Now</span></h2>
+    <br/>
+    <p style="font-size:1em; color:#aaa; max-width:640px; margin:0 auto; text-align:center; line-height:2; font-weight:300;">
+      Hand me a photo from your new collection.<br/>
+      Or describe what you imagine.
+    </p>
+    <br/>
+    <p style="font-size:0.88em; color:var(--gold); text-align:center; font-family:'Playfair Display',serif; font-style:italic;">
+      I&rsquo;ll create it live, right here.
+    </p>
+  </div>
+</section>
+
+<!-- ===== 9: NEXT STEPS ===== -->
+<section class="center-slide" data-background-color="#080808">
+  <div class="stripe" style="margin:0 auto 28px;"></div>
+  <h2 style="font-size:2.2em;">Next Steps</h2>
+  <br/>
+  <div class="fragment fade-up meeting-card pulse" style="border-color:#2a2a2a;">
+    <h3 style="font-size:0.9em; margin-bottom:12px; font-weight:600;">Schedule a Meeting</h3>
+    <p style="font-size:0.65em; color:#888; text-align:center; line-height:1.9; margin:0;">
+      Pricing, custom integrations,<br/>
+      and how Fashion AI fits your brand.
+    </p>
+  </div>
+  <br/><br/>
+  <div class="fragment fade-up">
+    <p style="font-size:0.65em; color:#fff; letter-spacing:0.04em; margin-bottom:14px; font-weight:500;">
+      Mor Hayat
+    </p>
+    <div class="contact-row">
+      <a href="mailto:hayatmor@gmail.com" class="contact-item">hayatmor@gmail.com</a>
+      <span class="contact-sep">&middot;</span>
+      <a href="tel:+972542600177" class="contact-item">+972-542600177</a>
+      <span class="contact-sep">&middot;</span>
+      <a href="https://www.linkedin.com/in/mor-hayat/" target="_blank" class="contact-item">LinkedIn</a>
+    </div>
+  </div>
+  <br/><br/>
+  <p class="fragment fade-up muted" style="letter-spacing:0.2em; text-transform:uppercase;">
+    MIPEL 129 &nbsp;&nbsp;&nbsp; Milan &nbsp;&nbsp;&nbsp; 2026
+  </p>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: 'c/t',
+  transition: 'fade',
+  transitionSpeed: 'slow',
+  backgroundTransition: 'fade',
+  autoAnimateDuration: 1,
+  width: 1280,
+  height: 720,
+  margin: 0.04,
+  center: true,
+  progress: true,
+  controls: false,
+  keyboard: true,
+  touch: true,
+});
+
+function animateCounters(el) {
+  el.querySelectorAll('.counter').forEach(c => {
+    if (c.dataset.decimal) { c.textContent = c.dataset.decimal; return; }
+    const t = parseInt(c.dataset.target);
+    if (!t) { c.textContent = '0'; return; }
+    let cur = 0;
+    const step = t / (1600/16);
+    const timer = setInterval(() => {
+      cur += step;
+      if (cur >= t) { cur = t; clearInterval(timer); }
+      c.textContent = Math.floor(cur).toLocaleString();
+    }, 16);
+  });
+}
+
+Reveal.on('slidechanged', (e) => {
+  if (e.currentSlide.querySelectorAll('.fragment.visible .counter').length) animateCounters(e.currentSlide);
+});
+
+Reveal.on('fragmentshown', (e) => {
+  const s = e.fragment.closest('section');
+  if (e.fragment.querySelector('.counter')) animateCounters(s);
+});
+</script>
+</body>
+</html>
