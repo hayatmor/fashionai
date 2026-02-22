@@ -1,6 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
 
+export const maxDuration = 60;
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "20mb",
+    },
+  },
+};
+
 const API_KEYS = [
   process.env.GEMINI_API_KEY ?? "AIzaSyC85mOpdKjOrvQU0vTT-shNEe4qKELDRnk",
   "AIzaSyDp-siY_MHug6CvkRI5QewAnxPi-N2jDgY",

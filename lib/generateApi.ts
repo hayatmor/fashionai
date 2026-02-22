@@ -33,6 +33,17 @@ export async function generateImage(
     }),
   });
 
+  const contentType = res.headers.get("content-type") ?? "";
+
+  if (!contentType.includes("application/json")) {
+    const text = await res.text();
+    throw new Error(
+      res.status === 413
+        ? "Image is too large. Please use an image under 10 MB."
+        : `Server error (${res.status}): ${text.slice(0, 120)}`,
+    );
+  }
+
   const data = await res.json();
 
   if (!res.ok) {
