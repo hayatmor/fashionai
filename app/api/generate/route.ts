@@ -11,11 +11,10 @@ export const config = {
   },
 };
 
-const API_KEYS = [
-  process.env.GEMINI_API_KEY ?? "AIzaSyBHFHiw6E5xOBZvuvKucSa-HvOLSVVGsIg",
-  "AIzaSyDp-siY_MHug6CvkRI5QewAnxPi-N2jDgY",
-  "AIzaSyC85mOpdKjOrvQU0vTT-shNEe4qKELDRnk",
-];
+function getApiKey(): string | null {
+  const key = process.env.GEMINI_API_KEY?.trim();
+  return key || null;
+}
 
 function buildParts(
   prompt: string,
@@ -51,6 +50,9 @@ function buildPartsMulti(
   return parts;
 }
 
+const IMAGE_MODEL =
+  process.env.GEMINI_IMAGE_MODEL || "gemini-2.5-flash-image";
+
 async function tryGenerate(
   apiKey: string,
   parts: Array<{ text: string } | { inlineData: { mimeType: string; data: string } }>,
@@ -58,7 +60,7 @@ async function tryGenerate(
   const ai = new GoogleGenAI({ apiKey });
 
   const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash-image",
+    model: IMAGE_MODEL,
     contents: [
       {
         role: "user",
@@ -107,24 +109,57 @@ export async function POST(req: NextRequest) {
       parts = buildParts(prompt, imageBase64, mimeType);
     }
 
-    let response = null;
-    let lastError: string | null = null;
-
-    for (const key of API_KEYS) {
-      try {
-        response = await tryGenerate(key, parts);
-        break;
-      } catch (err: unknown) {
-        lastError = err instanceof Error ? err.message : "Unknown error";
-        console.error(`API key ending ...${key.slice(-6)} failed:`, lastError);
-      }
+    const apiKey = getApiKey();
+    if (!apiKey) {
+      return NextResponse.json(
+        {
+          error:
+            "Gemini API key is not configured. Add GEMINI_API_KEY to your .env.local file. Get a key at https://aistudio.google.com/apikey",
+        },
+        { status: 503 },
+      );
     }
 
-    if (!response) {
-      return NextResponse.json(
-        { error: lastError || "All API keys failed" },
-        { status: 502 },
-      );
+    let response;
+    let lastErr: unknown = null;
+    const maxRetries = 2;
+
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        response = await tryGenerate(apiKey, parts);
+        break;
+      } catch (err: unknown) {
+        lastErr = err;
+        const msg = err instanceof Error ? err.message : String(err);
+        const is429 =
+          msg.includes("429") ||
+          msg.includes("RESOURCE_EXHAUSTED") ||
+          msg.includes("quota") ||
+          msg.includes("rate limit");
+
+        if (is429 && attempt < maxRetries) {
+          const waitMs = 60_000;
+          await new Promise((r) => setTimeout(r, waitMs));
+          continue;
+        }
+
+        const isLeakedKey =
+          msg.includes("leaked") ||
+          msg.includes("403") ||
+          msg.includes("PERMISSION_DENIED");
+        const isQuota = msg.includes("429") || msg.includes("quota");
+
+        return NextResponse.json(
+          {
+            error: isLeakedKey
+              ? "Your API key was reported as leaked or invalid. Create a new key at https://aistudio.google.com/apikey and update GEMINI_API_KEY in .env.local"
+              : isQuota
+                ? "API quota exceeded. Free tier: ~500 images/day. Wait a few minutes or check https://ai.google.dev/gemini-api/docs/rate-limits"
+                : msg,
+          },
+          { status: 502 },
+        );
+      }
     }
 
     const candidates = response.candidates;
