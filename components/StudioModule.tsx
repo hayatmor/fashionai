@@ -4,24 +4,32 @@ import { useCallback, useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, ClipboardCopy, Check, Download } from "lucide-react";
 import DropZone from "./DropZone";
+import MultiDropZone, { createEmptySlots, type FileSlot } from "./MultiDropZone";
 import StatusBar, { Status } from "./StatusBar";
-import { generateImage, GenerateResult } from "@/lib/generateApi";
+import { generateImage, generateImageMulti, generateCatalogCompose, GenerateResult } from "@/lib/generateApi";
 
 interface StudioModuleProps {
   title: string;
   prompt: string;
   index: number;
+  maxFiles?: number;
+  useCompose?: boolean;
 }
 
-export default function StudioModule({ title, prompt, index }: StudioModuleProps) {
+export default function StudioModule({ title, prompt, index, maxFiles = 1, useCompose = false }: StudioModuleProps) {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [multiSlots, setMultiSlots] = useState<[FileSlot, FileSlot, FileSlot, FileSlot]>(createEmptySlots);
   const [copied, setCopied] = useState(false);
 
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
   const [startTime, setStartTime] = useState<number | null>(null);
   const [result, setResult] = useState<GenerateResult | null>(null);
+
+  const isMulti = maxFiles > 1;
+  const multiFiles = multiSlots.map((s) => s.file).filter((f): f is File => f !== null);
+  const canGenerate = isMulti ? multiFiles.length === maxFiles : !!file;
 
   const handleFileSelect = useCallback((f: File | null) => {
     setFile(f);
@@ -36,8 +44,15 @@ export default function StudioModule({ title, prompt, index }: StudioModuleProps
     setResult(null);
   }, []);
 
+  const handleSlotsChange = useCallback((slots: [FileSlot, FileSlot, FileSlot, FileSlot]) => {
+    setMultiSlots(slots);
+    setStatus("idle");
+    setError(null);
+    setResult(null);
+  }, []);
+
   const handleGenerate = useCallback(async () => {
-    if (!file) return;
+    if (!canGenerate) return;
 
     setStatus("loading");
     setError(null);
@@ -45,7 +60,11 @@ export default function StudioModule({ title, prompt, index }: StudioModuleProps
     setStartTime(Date.now());
 
     try {
-      const data = await generateImage(file, prompt);
+      const data = useCompose
+        ? await generateCatalogCompose(multiFiles)
+        : isMulti
+          ? await generateImageMulti(multiFiles, prompt)
+          : await generateImage(file!, prompt);
       setResult(data);
       setStatus("success");
     } catch (err: unknown) {
@@ -55,7 +74,7 @@ export default function StudioModule({ title, prompt, index }: StudioModuleProps
     } finally {
       setStartTime(null);
     }
-  }, [file, prompt]);
+  }, [canGenerate, isMulti, useCompose, multiFiles, file, prompt]);
 
   const handleCopy = useCallback(async () => {
     await navigator.clipboard.writeText(prompt);
@@ -88,14 +107,18 @@ export default function StudioModule({ title, prompt, index }: StudioModuleProps
         {title}
       </h3>
 
-      <DropZone onFileSelect={handleFileSelect} file={file} previewUrl={previewUrl} />
+      {isMulti ? (
+        <MultiDropZone slots={multiSlots} onSlotsChange={handleSlotsChange} />
+      ) : (
+        <DropZone onFileSelect={handleFileSelect} file={file} previewUrl={previewUrl} />
+      )}
 
       <div className="flex gap-3">
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={handleGenerate}
-          disabled={!file || status === "loading"}
+          disabled={!canGenerate || status === "loading"}
           className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-charcoal py-3 text-sm font-medium tracking-wide text-white transition-opacity disabled:cursor-not-allowed disabled:opacity-30"
         >
           <Sparkles size={16} />

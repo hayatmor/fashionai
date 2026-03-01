@@ -33,6 +33,54 @@ export async function generateImage(
     }),
   });
 
+  return handleGenerateResponse(res);
+}
+
+export async function generateImageMulti(
+  files: File[],
+  prompt: string,
+): Promise<GenerateResult> {
+  const images = await Promise.all(
+    files.map(async (f) => ({
+      base64: await fileToBase64(f),
+      mimeType: f.type || "image/png",
+    })),
+  );
+
+  const res = await fetch("/api/generate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      images,
+      prompt,
+    }),
+  });
+
+  return handleGenerateResponse(res);
+}
+
+/** Composes 4 photos into a catalog layout — no AI, photos preserved exactly. */
+export async function generateCatalogCompose(
+  files: File[],
+): Promise<GenerateResult> {
+  const images = await Promise.all(
+    files.map(async (f) => ({
+      base64: await fileToBase64(f),
+      mimeType: f.type || "image/png",
+    })),
+  );
+
+  const res = await fetch("/api/catalog-compose", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ images }),
+  });
+
+  return handleGenerateResponse(res);
+}
+
+async function handleGenerateResponse(res: Response): Promise<GenerateResult> {
+
   const contentType = res.headers.get("content-type") ?? "";
 
   if (!contentType.includes("application/json")) {

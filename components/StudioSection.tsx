@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import StudioModule from "./StudioModule";
 import {
   ECOMMERCE_PROMPT,
+  ECOMMERCE_2_PROMPT,
   SOCIAL_CREATIVE_PROMPT,
   EDITORIAL_MODEL_PROMPT,
   LIFESTYLE_EDITORIAL_PROMPT,
@@ -12,10 +13,15 @@ import {
   HUGGING_BAG_PROMPT,
   CHAIR_MODEL_PROMPT,
   MALE_MODEL_PROMPT,
+  RENATO_ANGI_PROMPT,
+  RENATO_ANGI_2_PROMPT,
+  RENATO_ANGI_CATALOG_PROMPT,
+  BIASIA_PROMPT,
 } from "@/lib/prompts";
 
 const modules = [
   { title: "E-Commerce Studio", prompt: ECOMMERCE_PROMPT },
+  { title: "E-Commerce Studio 2", prompt: ECOMMERCE_2_PROMPT },
   { title: "Social Creative (1:1)", prompt: SOCIAL_CREATIVE_PROMPT },
   { title: "Editorial Model Shot", prompt: EDITORIAL_MODEL_PROMPT },
   { title: "Lifestyle Editorial", prompt: LIFESTYLE_EDITORIAL_PROMPT },
@@ -24,6 +30,10 @@ const modules = [
   { title: "Vibe — Hugging the Bag", prompt: HUGGING_BAG_PROMPT },
   { title: "Chair & Model", prompt: CHAIR_MODEL_PROMPT },
   { title: "Male Model Wearing Bag", prompt: MALE_MODEL_PROMPT },
+  { title: "Renato Angi Style", prompt: RENATO_ANGI_PROMPT },
+  { title: "Renato Angi Style 2", prompt: RENATO_ANGI_2_PROMPT },
+  { title: "Renato Angi Catalog Master", prompt: RENATO_ANGI_CATALOG_PROMPT, maxFiles: 4, useCompose: true },
+  { title: "Biasia", prompt: BIASIA_PROMPT },
 ];
 
 export default function StudioSection() {
@@ -45,6 +55,8 @@ export default function StudioSection() {
             title={mod.title}
             prompt={mod.prompt}
             index={i}
+            maxFiles={mod.maxFiles}
+            useCompose={mod.useCompose}
           />
         ))}
       </div>

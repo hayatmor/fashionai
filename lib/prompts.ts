@@ -8,6 +8,16 @@ Camera look: 50–70mm lens, shallow depth of field, studio lighting, profession
 Output: Photorealistic, color-accurate, noise-free, high dynamic range, commercial-ready.
 Emphasize premium leather texture, natural grain, stitching precision, and realistic material depth.`;
 
+export const ECOMMERCE_2_PROMPT = `Ultra-high-resolution professional studio packshot of the uploaded product, photographed on a pure white background (#FFFFFF).
+Product is centered, perfectly aligned, and fully visible with no cropping.
+Lighting is soft, even, and diffused, creating gentle natural shadows directly beneath the product to give depth without distraction.
+Texture, stitching, materials, and fine details are razor-sharp, realistic, and true to the original product.
+No props, no text, no logos added, no hands, no models, no reflections, no gradients.
+Style: Luxury e-commerce photography, clean, minimal, premium brand aesthetic suitable for Shopify / Amazon / high-end fashion websites.
+Camera look: 50–70mm lens, shallow depth of field, studio lighting, professional product photography.
+Output: Photorealistic, color-accurate, noise-free, high dynamic range, commercial-ready.
+Emphasize premium leather texture, natural grain, stitching precision, and realistic material depth.`;
+
 export const SOCIAL_CREATIVE_PROMPT = `Create a high-quality, square (1:1) Instagram-ready creative image using the uploaded handbag as the main subject.
 The bag must remain 100% identical to the original product – same shape, proportions, texture, stitching, hardware, color, and details. Do not alter the design of the bag in any way.
 Scene & Vibe: A stylish, modern, and slightly edgy lifestyle scene with a cool, urban-luxury vibe. Think fashion-forward, Instagram-worthy, confident, and premium – not commercial, not catalog.
@@ -272,3 +282,184 @@ Natural anatomy (no deformed hands/fingers).
 Keep the bag as the hero and preserve its exact identity.
 
 NEGATIVE (avoid): cartoon, illustration, CGI, 3D render, blur, noise, low-res, oversaturated, warped bag, changed bag design, wrong logo, missing zippers, extra straps, duplicate bag, bad hands, extra fingers, deformed body, text, watermark, added brand marks, cluttered background.`;
+
+export const RENATO_ANGI_PROMPT = `Create a high-end fashion campaign poster in a dark, moody, luxury Italian aesthetic.
+
+BAG (must stay identical):
+Use the uploaded handbag as the hero product. The bag must remain 100% identical to the original — same shape, proportions, leather texture, stitching, hardware, logo placement, color, and details. Do NOT redesign or modify the bag in any way.
+
+MODEL / POSE:
+A glamorous European/Italian female model (mid-20s to early-30s), long wavy hair, confident seductive expression, looking at the camera.
+Pose: upper body turned slightly sideways, one arm raised above the head touching hair, the other hand near the face.
+Wardrobe: black lingerie / lace fashion look (editorial, classy, not explicit), elegant rings/jewelry, premium styling.
+
+BAG STYLING:
+The uploaded bag is worn on the model's shoulder/back (strap visible), sitting along the side of her torso/hip area, clearly visible and not cropped.
+Bag must look realistic with correct weight, strap tension, and natural contact with the body.
+
+BACKGROUND / MOOD:
+Dark smoky studio background with a soft fog/haze effect and subtle bokeh reflections (like night city lights or studio reflections).
+Overall tone: dramatic, luxurious, sensual, Italian fashion campaign.
+
+TEXT / POSTER LAYOUT:
+Do NOT add any text — keep empty space at the top for later editing.
+
+LIGHTING:
+Cinematic studio lighting with soft highlights on cheekbones and hair, controlled shadows, and glossy accents on the bag hardware.
+No harsh glare, no overexposure.
+
+CAMERA / QUALITY:
+Vertical poster format (2:3 or 4:5).
+High resolution, photorealistic, fashion editorial campaign quality.
+Lens look: 50mm–85mm portrait, shallow depth of field, crisp focus on model + bag.
+Color grading: deep blacks, warm highlights, premium contrast.
+
+RULES:
+No watermark.
+No extra logos added on the bag.
+No distortion of hands/body.
+Keep the bag as the product hero and perfectly realistic.
+
+NEGATIVE (avoid): cartoon, illustration, CGI, 3D render, low-res, blur, noise, wrong logo, misspelled brand text, warped bag, changed bag design, extra straps, duplicate bag, bad hands, extra fingers, deformed anatomy, nudity, explicit content, watermark, random text, messy cluttered background.`;
+
+export const RENATO_ANGI_2_PROMPT = `Create a high-end fashion campaign poster in a dark, moody studio aesthetic with glossy haze/bokeh reflections.
+
+BAG (must stay identical):
+Use the uploaded handbag as the hero product. The bag must remain 100% identical to the original — same shape, proportions, material texture, stitching, zippers/hardware, logo placement, color, and details. Do NOT redesign, recolor, or distort the bag.
+
+MODEL / EXPRESSION / POSE:
+A glamorous European/Italian female model (mid-20s to early-30s), long wavy hair swept to one side, confident fashion styling.
+Expression: playful surprise / shock — mouth open in an "OMG" expression, eyes wide, looking toward camera.
+Pose: 3/4 body view, torso angled slightly to the side.
+The model holds the bag with BOTH hands near her face/cheek level, presenting it like a "showcase" (palms supporting the bag from below and side).
+The bag is tilted slightly toward camera so the front texture, logo, and zipper are clearly visible.
+No hands covering important bag details.
+
+WARDROBE / STYLING:
+Editorial lingerie-inspired black outfit (classy, non-explicit): black bralette + high waist black bottoms.
+Optional: black textured jacket/coat draped on one arm/shoulder for luxury mood.
+Minimal jewelry (small bracelet/ring), no distracting accessories.
+
+BACKGROUND / POSTER LOOK:
+Dark smoky gradient background with soft fog/haze and glossy light reflections (subtle bokeh spots), like a nightlife studio campaign.
+Keep large clean negative space at the top-left for brand header.
+
+TEXT / BRAND HEADER:
+Do NOT generate text — leave clean space for later editing.
+
+LIGHTING:
+Cinematic studio lighting with soft highlights on hair/cheekbones and controlled shadows.
+Subtle specular highlights on bag texture and metal hardware, no harsh glare, no blown highlights.
+
+COMPOSITION / FORMAT:
+Vertical poster format (2:3 or 4:5).
+Model positioned center-right, bag near upper center-right, top-left left intentionally open for branding.
+Bag must be sharp and prominent.
+
+CAMERA / QUALITY:
+Photorealistic, ultra-high resolution, fashion campaign quality.
+Lens look: 50mm–85mm portrait, shallow depth of field.
+Color grading: deep blacks, cool-to-neutral shadows, warm skin highlights, premium contrast.
+Noise-free, HDR, commercial-ready.
+
+RULES:
+No watermark.
+No extra logos added to the bag.
+No deformed anatomy (hands/fingers must look natural).
+Preserve the uploaded bag exactly.
+
+NEGATIVE (avoid): cartoon, illustration, CGI, 3D render, low-res, blur, noise, wrong logo, altered spelling, warped bag, changed bag design, extra straps, duplicate bag, bad hands, extra fingers, deformed anatomy, explicit nudity, pornographic, watermark, random text, cluttered background.`;
+
+export const BIASIA_PROMPT = `Create a high-end fashion campaign poster with a dark, moody, modern-luxury boutique aesthetic.
+
+BAG (must stay identical):
+Use the uploaded handbag as the hero product. The bag must remain 100% identical to the original — same shape, proportions, leather texture, stitching, hardware, logo placement, color, and details. Do NOT redesign, recolor, or distort the bag.
+
+SCENE / LOCATION:
+A modern designer boutique or gallery interior:
+- Curved concrete/stone wall in the background (industrial minimalism)
+- Ceiling spotlights visible above
+- On the right side: clean display pedestals / shelves with small handbags on them (minimal, premium)
+Overall vibe: luxury showroom, contemporary architecture, muted tones.
+
+MODEL / STYLING:
+Androgynous / fashion-forward model (young adult), short textured hair.
+Wearing oversized black sunglasses (wraparound / shield style).
+Outfit: dark navy/black chunky knit sweater, black leather gloves.
+Expression: cool, neutral, slightly serious, looking toward camera.
+
+POSE / BAG INTERACTION:
+The model is holding the bag tightly against the chest in a protective hug.
+The bag is oversized in the frame, dominating the center and lower half of the image.
+The model's gloved hands wrap around the bag; strap/handle visible near the shoulder.
+Keep the bag fully visible and realistic with correct weight, folds, and natural contact.
+
+COMPOSITION:
+Vertical poster format (2:3 or 4:5).
+Model positioned center-left; bag centered and prominent.
+Right side shows the boutique display pedestals with small bags (slightly out of focus).
+Leave some negative space near the top for a campaign headline (no text generated).
+
+LIGHTING / COLOR:
+Cinematic indoor lighting with soft highlights, gentle shadows.
+Slight film-grain editorial look, muted color palette, premium contrast.
+No harsh glare on the bag; controlled reflections on leather.
+
+CAMERA / QUALITY:
+Photorealistic, ultra-high resolution, fashion campaign quality.
+Lens look: 50mm–85mm portrait, shallow depth of field (model + bag sharp, background softly blurred).
+Crisp leather grain and stitching; accurate proportions; noise-free HDR.
+
+RULES:
+No watermark.
+No added logos or text on the bag.
+No distorted anatomy (hands/fingers natural).
+Preserve the uploaded bag exactly.
+
+NEGATIVE (avoid): cartoon, illustration, CGI, 3D render, low-res, blur, noisy, oversaturated, warped bag, changed bag design, wrong logo, extra straps, duplicate bag, bad hands, extra fingers, deformed anatomy, text, watermark, messy cluttered background, harsh glare, blown highlights.`;
+
+export const RENATO_ANGI_CATALOG_PROMPT = `You are a layout designer. Create a clean, luxury fashion catalog page on a pure white background.
+
+INPUTS:
+I am providing 4 product photos in this exact order:
+- Photo_1 (first image) → top-left
+- Photo_2 (second image) → top-right
+- Photo_3 (third image) → bottom-left
+- Photo_4 (fourth image) → bottom-right
+
+TASK:
+Generate a single A4 portrait catalog page with this structure:
+
+1) HEADER (top center)
+- Leave clean blank space for: small emblem/logo, brand name "RENATO ANGI", sub-line "VENEZIA", category "Backpack"
+- Do NOT render any text — leave white/blank space for later editing in Canva/Figma
+
+2) PRODUCT GRID (center of page)
+- Two columns, two rows (2x2 grid)
+- Place Photo_1 top-left, Photo_2 top-right, Photo_3 bottom-left, Photo_4 bottom-right
+- Each product must remain 100% identical to its source image — same shape, proportions, leather texture, stitching, hardware, logo, color, and details. Do NOT redesign or modify any product.
+- Each product cleanly placed on white with very subtle soft shadow beneath
+- Normalize scale so products look consistent in size across the grid
+- Consistent spacing between columns and rows
+
+3) TEXT UNDER EACH PRODUCT
+- Leave clean blank space under each product image for 3 lines of text (Article, dimensions, price)
+- Do NOT render any text
+
+4) BOTTOM SECTION (leather swatches)
+- Leave blank space for "Line … FRANCIA LEATHER" label
+- Add 10 square leather-texture color swatches in a clean grid (2 rows x 5 columns)
+- Swatches should look like real leather samples: White, Beige, Pink, Cuoio, Taupe, Red, Bluette, Grey, Navy, Black
+- Do NOT add text under swatches — keep them as visual texture samples only, or leave minimal space for labels
+
+STYLE:
+- Pure white background, minimal, premium, lots of whitespace
+- High-end catalog aesthetic, print-ready
+- No decorative elements besides subtle shadows
+- Everything aligned, consistent margins
+- Preserve each product exactly as provided
+
+FORMAT:
+Portrait orientation (A4 or US Letter proportions), vertical layout.
+
+NEGATIVE (avoid): cartoon, illustration, CGI, 3D render, text overlays, watermark, cluttered layout, wrong product design, distorted proportions, low-res, blur.`;
