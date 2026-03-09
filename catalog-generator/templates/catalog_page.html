@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Helvetica, Arial, sans-serif;
+    background: #fff;
+    color: #1a1a1a;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    padding: 8mm 14mm 8mm 14mm;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
+    position: relative;
+    background: #fff;
+    overflow: hidden;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* --- Header --- */
+  .header {
+    text-align: center;
+    margin-bottom: 3mm;
+    flex-shrink: 0;
+  }
+  .header .logo-img {
+    height: 22mm;
+  }
+  .header .brand {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 20pt;
+    font-weight: 600;
+    font-style: italic;
+    letter-spacing: 2px;
+  }
+  .header .sub {
+    font-size: 8pt;
+    color: #666;
+    letter-spacing: 3px;
+  }
+  .header .category {
+    font-size: 9pt;
+    font-style: italic;
+    color: #444;
+    margin-top: 1mm;
+  }
+
+  /* --- Product Grid --- */
+  .products {
+    flex: 1;
+    display: grid;
+    align-content: start;
+  }
+  /* 1 image: full width, max height */
+  .products.grid-1 {
+    grid-template-columns: 1fr;
+    gap: 2mm;
+  }
+  /* 2 images: stacked vertically, each gets half the space */
+  .products.grid-2 {
+    grid-template-columns: 1fr;
+    gap: 2mm;
+  }
+  /* 3-4 images: 2x2 grid */
+  .products.grid-3 {
+    grid-template-columns: 1fr 1fr;
+    gap: 2mm 4mm;
+  }
+  .products.grid-4 {
+    grid-template-columns: 1fr 1fr;
+    gap: 2mm 4mm;
+  }
+
+  .product-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-img-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .grid-1 .product-img-wrap { height: 190mm; }
+  .grid-2 .product-img-wrap { height: 82mm; }
+  .grid-3 .product-img-wrap { height: 72mm; }
+  .grid-4 .product-img-wrap { height: 72mm; }
+
+  .product-img-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .product-info {
+    text-align: center;
+    margin-top: 1.5mm;
+    flex-shrink: 0;
+  }
+  .product-info .article {
+    font-size: 11pt;
+    font-weight: 700;
+  }
+  .product-info .size {
+    font-size: 8pt;
+    color: #555;
+    margin-top: 0.5mm;
+  }
+  .product-info .price {
+    font-size: 10pt;
+    font-weight: 700;
+    margin-top: 0.5mm;
+  }
+
+  /* --- Color Swatches Footer --- */
+  .color-footer {
+    flex-shrink: 0;
+    margin-top: auto;
+    padding-top: 3mm;
+  }
+  .color-footer .line-title {
+    font-size: 9pt;
+    font-weight: 400;
+    margin-bottom: 2mm;
+    letter-spacing: 0.5px;
+  }
+  .swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2mm 4mm;
+  }
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 16mm;
+  }
+  .swatch-color {
+    width: 15mm;
+    height: 15mm;
+    border: 0.5px solid #ccc;
+    overflow: hidden;
+  }
+  .swatch-color img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .swatch-hex {
+    width: 100%;
+    height: 100%;
+  }
+  .swatch-code {
+    font-size: 6pt;
+    font-weight: 700;
+    margin-top: 1mm;
+    text-align: center;
+  }
+  .swatch-name {
+    font-size: 6pt;
+    color: #666;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+{% for page in pages %}
+<div class="page">
+  <div class="header">
+    {% if logo_path %}
+    <img class="logo-img" src="{{ logo_path }}" alt="Renato Angi">
+    {% else %}
+    <div class="brand">RENATO ANGI</div>
+    <div class="sub">VENEZIA</div>
+    {% endif %}
+    {% if page.category %}
+    <div class="category">{{ page.category }}</div>
+    {% endif %}
+  </div>
+
+  <div class="products grid-{{ page.products | length }}">
+    {% for p in page.products %}
+    <div class="product-cell">
+      <div class="product-img-wrap">
+        <img src="{{ p.image_path }}" alt="">
+      </div>
+      <div class="product-info">
+        <div class="article">Article {{ p.article }}</div>
+        <div class="size">{{ p.size }}</div>
+        {% if show_price %}
+        <div class="price">{{ p.price }}</div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% if page.line %}
+  <div class="color-footer">
+    <div class="line-title">{{ page.line.display_title }}</div>
+    <div class="swatches">
+      {% for c in page.line.colors %}
+      <div class="swatch">
+        <div class="swatch-color">
+          {% if c.image_path %}
+          <img src="{{ c.image_path }}" alt="{{ c.code }}">
+          {% else %}
+          <div class="swatch-hex" style="background-color: {{ c.hex }};"></div>
+          {% endif %}
+        </div>
+        <div class="swatch-code">{{ c.code }}</div>
+        <div class="swatch-name">{{ c.name }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,94 @@
+{
+  "season": "Fall Winter 2026",
+  "lines": {
+    "LINE 81": {
+      "name": "FRANCIA LEATHER",
+      "colors": [
+        { "code": "Col.01", "name": "White", "hex": "#F0EDE8", "image": "" },
+        { "code": "Col.03", "name": "Beige", "hex": "#D4C9B0", "image": "" },
+        { "code": "Col.51", "name": "Pink", "hex": "#E8B4B0", "image": "" },
+        { "code": "Col.33", "name": "Cuoio", "hex": "#B07040", "image": "" },
+        { "code": "Col.09", "name": "Taupe", "hex": "#8B8078", "image": "" },
+        { "code": "Col.50", "name": "Red", "hex": "#C02020", "image": "" },
+        { "code": "Col.85", "name": "Bluette", "hex": "#2060B0", "image": "" },
+        { "code": "Col.99", "name": "Grey", "hex": "#A8A8A0", "image": "" },
+        { "code": "Col.80", "name": "Navy", "hex": "#1A1A40", "image": "" },
+        { "code": "Col.90", "name": "Black", "hex": "#1a1a1a", "image": "" }
+      ]
+    },
+    "LINE 82": {
+      "name": "LEATHER LINE 82",
+      "colors": [
+        { "code": "Col.01", "name": "White", "hex": "#F0EDE8", "image": "" },
+        { "code": "Col.03", "name": "Beige", "hex": "#D4C9B0", "image": "" },
+        { "code": "Col.33", "name": "Cuoio", "hex": "#B07040", "image": "" },
+        { "code": "Col.80", "name": "Navy", "hex": "#1A1A40", "image": "" },
+        { "code": "Col.90", "name": "Black", "hex": "#1a1a1a", "image": "" }
+      ]
+    },
+    "LINE 10": {
+      "name": "LEATHER LINE 10",
+      "colors": [
+        { "code": "Col.01", "name": "White", "hex": "#F0EDE8", "image": "" },
+        { "code": "Col.10", "name": "Silver/Silver", "hex": "#C0C0C0", "image": "" },
+        { "code": "Col.80", "name": "Navy", "hex": "#1A1A40", "image": "" },
+        { "code": "Col.90", "name": "Black", "hex": "#1a1a1a", "image": "" }
+      ]
+    },
+    "LINE 01": {
+      "name": "DOLLARO LEATHER",
+      "colors": [
+        { "code": "Col.80", "name": "Navy", "hex": "#1A1A40", "image": "" },
+        { "code": "Col.90", "name": "Black", "hex": "#1a1a1a", "image": "" }
+      ]
+    },
+    "LINE 17": {
+      "name": "WOVEN LEATHER",
+      "colors": [
+        { "code": "Col.01", "name": "White", "hex": "#F0EDE8", "image": "" },
+        { "code": "Col.190", "name": "White/Black", "hex": "#E0E0E0", "image": "" },
+        { "code": "Col.111", "name": "Silver/White", "hex": "#D0D0D0", "image": "" },
+        { "code": "Col.10", "name": "Silver/Silver", "hex": "#C0C0C0", "image": "" },
+        { "code": "Col.110", "name": "Silver/Black", "hex": "#708090", "image": "" },
+        { "code": "Col.03", "name": "Beige/Beige", "hex": "#D4C9B0", "image": "" },
+        { "code": "Col.330", "name": "Cuoio/Cuoio", "hex": "#B07040", "image": "" },
+        { "code": "Col.385", "name": "Cuoio/Bluette", "hex": "#5A7A9E", "image": "" },
+        { "code": "Col.50", "name": "Red/Red", "hex": "#C02020", "image": "" },
+        { "code": "Col.90", "name": "Black", "hex": "#1a1a1a", "image": "" }
+      ]
+    },
+    "LINE 18": {
+      "name": "LEATHER LINE 18",
+      "colors": [
+        { "code": "Col.01", "name": "White", "hex": "#F0EDE8", "image": "" },
+        { "code": "Col.90", "name": "Black", "hex": "#1a1a1a", "image": "" }
+      ]
+    },
+    "LINE 03": {
+      "name": "LEATHER LINE 03",
+      "colors": [
+        { "code": "Col.01", "name": "White", "hex": "#F0EDE8", "image": "" },
+        { "code": "Col.90", "name": "Black", "hex": "#1a1a1a", "image": "" }
+      ]
+    },
+    "LINE 16": {
+      "name": "LEATHER LINE 16",
+      "colors": [
+        { "code": "Col.01", "name": "White", "hex": "#F0EDE8", "image": "" },
+        { "code": "Col.90", "name": "Black", "hex": "#1a1a1a", "image": "" }
+      ]
+    },
+    "LINE 37": {
+      "name": "LEATHER LINE 37",
+      "colors": [
+        { "code": "Col.90", "name": "Black", "hex": "#1a1a1a", "image": "" }
+      ]
+    },
+    "LINE 12": {
+      "name": "LEATHER LINE 12",
+      "colors": [
+        { "code": "Col.90", "name": "Black", "hex": "#1a1a1a", "image": "" }
+      ]
+    }
+  }
+}
