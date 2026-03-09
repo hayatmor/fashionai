@@ -26,14 +26,14 @@ interface OptionConfig {
 const OPTIONS: OptionConfig[] = [
   {
     id: "sam",
-    title: "Vega.IO Sam",
-    description: "Redesign your image in clean vector / flat illustration style — muted palette, thin black outlines, cheerful and minimal.",
+    title: "Vega.IO SAM",
+    description: "Warm, cozy pixel art featuring SAM the mole (green flower helmet, blue goggles) interacting with your product in a cheerful nature scene.",
     prompt: VEGAIO_SAM_PROMPT,
   },
   {
     id: "pixel-art",
     title: "Vega.IO Pixel Art",
-    description: "Redesign your image in classic 8-bit pixel art — sharp pixels, black outlines, retro game look.",
+    description: "Polished 16-bit pixel art in vega.io's warm palette — soft greens, sunny blues, cream backgrounds. Retro-game charm with nature and vintage tech details.",
     prompt: VEGAIO_PIXEL_ART_PROMPT,
   },
 ];

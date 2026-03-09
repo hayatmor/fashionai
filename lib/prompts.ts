@@ -517,23 +517,34 @@ NEGATIVE (avoid): cartoon, illustration, CGI, 3D render, text overlays, watermar
 // Vega.IO Style — redesign the uploaded image in two styles
 // ---------------------------------------------------------------------------
 
-/** Vega.IO Sam: clean vector / flat illustration style. Uses the uploaded image as subject. */
-export const VEGAIO_SAM_PROMPT = `Using the uploaded image as your reference, redesign it in Vega.IO "Sam" style.
+/** Vega.IO SAM: warm, cheerful pixel-art-inspired illustration starring SAM the mole — vega.io's mascot. */
+export const VEGAIO_SAM_PROMPT = `Using the uploaded image as your reference, redesign it in the Vega.IO "SAM" style — the warm, playful, cozy aesthetic used by vega.io featuring their mascot SAM the mole.
+
+THE SAM CHARACTER (include in every output):
+- SAM is a chubby, round brown mole with soft brown fur, a prominent pink/red nose, and small rounded ears.
+- He wears a green helmet or cap decorated with white-and-yellow daisy flowers, and large blue rectangular goggles/glasses over his eyes.
+- He has short stubby limbs and a chunky, lovable body shape. Friendly, cute, wholesome personality.
+- SAM should be the main character in the scene, interacting with the subject from the uploaded image (holding it, presenting it, standing beside it, using it, etc.).
 
 VEGA.IO SAM STYLE (match this aesthetic exactly):
-- Clean, modern vector illustration and flat graphic design. Two-dimensional, no heavy 3D or realism.
-- Limited, muted yet warm color palette: soft blues, periwinkle, terracotta orange, cream, off-white, muted olive green, golden yellow. Light beige or soft blue-gray backgrounds.
-- All shapes have thin, consistent black outlines defining every form. Smooth curves and simple geometric or organic shapes.
-- Minimal shading: at most subtle glossy highlights (e.g. small white oval on balloons or rounded shapes). No complex gradients or photorealistic shadows.
-- Playful, cheerful, and minimalist. Abstract shapes, stylized figures, jigsaw-like pieces, ribbons, clouds, or simple objects. Composition can be simplified and rearranged for maximum impact.
-- Overall: friendly, clean, material-design inspired, suitable for apps or branding. The subject from the uploaded image must be clearly recognizable but restyled in this exact Vega.IO Sam look.`;
+- Clean, polished pixel art at approximately 16-bit quality (think SNES / Game Boy Advance era). Visible pixel blocks but refined — not crude or jagged. Smooth, well-crafted sprite work.
+- COLOR PALETTE: Warm and cheerful — soft greens (#6B8E4E, #8FBC5A for grass/nature), warm browns (#8B6914, #A0784C for SAM's fur), sky blue (#87CEEB, #5DADE2 for water/sky), cream/off-white (#F5F0E1, #FEFCF3 for standalone backgrounds), yellow (#FFD700 for flowers/accents), coral pink (#E8787A for SAM's nose), and teal-green (#2E8B57 for SAM's helmet). No dark/neon colors. Everything feels sunny, natural, and inviting.
+- Clean 1-2px black outlines (#000000) on all sprites and shapes. Internal detail uses flat color fills with occasional subtle dithering for texture (grass, fur, water).
+- BACKGROUNDS: Soft green grass fields with tiny scattered flowers and subtle grass tufts, OR cream/off-white (#FEFCF3) for character-focused compositions, OR light blue sky/water scenes. Nature-forward, cozy, wholesome environments.
+- MOOD: Cheerful, wholesome, playful, and cozy. Like a friendly indie farming/adventure game. SAM is always happy, curious, or actively doing something fun.
+- Can include charming environmental details: daisies, small ponds with stones, watering cans, garden fences, retro arcade cabinets, vintage TV monitors, or retro tech gadgets — all rendered in the same warm pixel art style.
+- Overall: the subject from the uploaded image must be clearly recognizable and integrated into a cozy pixel-art scene with SAM the mole as the star. The result should look like official vega.io brand art — warm, lovable, and unmistakably pixel-crafted.`;
 
-/** Vega.IO Pixel Art: classic 8-bit pixel art. Uses the uploaded image as subject. */
-export const VEGAIO_PIXEL_ART_PROMPT = `Using the uploaded image as your reference, redesign it in classic 8-bit pixel art style (Vega.IO Pixel Art).
+/** Vega.IO Pixel Art: warm retro pixel art with nature scenes, arcade cabinets, and vintage tech — vega.io style. */
+export const VEGAIO_PIXEL_ART_PROMPT = `Using the uploaded image as your reference, redesign it in the Vega.IO pixel art style — the warm, cozy, retro-game-inspired aesthetic seen across vega.io's brand illustrations.
 
-PIXEL ART STYLE (match exactly):
-- Classic, low-resolution 8-bit pixel art. Every element is made of visible, sharp pixel blocks. No anti-aliasing, no smooth gradients, no soft edges.
-- Clear black outlines (#000000) on every shape. Limited, saturated color palette typical of retro video games.
-- The subject, composition, and key elements from the uploaded image must be recognizable but fully pixelated: characters, objects, and backgrounds converted into blocky pixels.
-- Sharp pixel grid visible everywhere. Clean, bright, video-game-like. Can add subtle pixel-dust or simple background elements (grass tufts, clouds, etc.) if it fits the scene.
-- Output must look like an authentic retro game sprite or scene. Keep the same subject and idea as the upload; only the visual style changes to 8-bit pixel art.`;
+VEGA.IO PIXEL ART STYLE (match exactly):
+- Polished 16-bit pixel art (SNES / GBA quality). Visible, sharp square pixel blocks but well-crafted and refined — not crude low-res. Clean sprite work with readable silhouettes and charming detail.
+- COLOR PALETTE: Warm, bright, and cheerful. Soft greens (#6B8E4E, #8FBC5A, #4A7C3F) for grass and foliage. Warm browns (#8B6914, #A0784C, #6B4E1A) for wood, earth, and organic elements. Sky blues (#87CEEB, #5DADE2, #A8D8EA) for water and sky. Cream/off-white (#FEFCF3, #F5F0E1) for standalone/character backgrounds. Yellow (#FFD700) and orange (#F5A623) for flowers, coins, and warm highlights. Coral pink (#E8787A) for small accents. Teal green (#2E8B57) for special objects. Limited palette per scene (16–24 colors max), cohesive and natural.
+- Clean 1–2px black outlines (#000000) on every sprite and shape. No anti-aliasing, no smooth gradients, no soft edges. Internal shading uses flat color steps or subtle dithering (checkerboard pattern for grass texture, water ripples, fur, etc.).
+- BACKGROUNDS: Lush green grass fields with tiny wildflowers and grass tufts scattered across the ground, OR cream/off-white for isolated object/character art, OR light blue sky with simple pixel clouds, OR underwater scenes with teal-blue gradients and pixel coral/seaweed. Environments feel like a cozy indie adventure game.
+- RETRO TECH ELEMENTS (optional, when fitting): Vintage CRT monitors, retro arcade cabinets, old-school boomboxes, walkie-talkies, VHS players, antennae — all rendered in the same warm pixel style. These can frame or display the main subject on their screens.
+- NATURE & GARDEN DETAILS: Pixel daisies (white petals, yellow center), small ponds with stones and water reflections, wooden fences/pipes, butterflies, watering cans, garden tools. The world feels alive and wholesome.
+- COMPOSITION: Clean and centered. The subject from the uploaded image is the hero — clearly recognizable but fully pixelated. Generous space around the subject. Can be framed as a game scene, an item showcase, or displayed on a retro monitor/arcade screen.
+- MOOD: Cozy, cheerful, nostalgic, and playful. Like a beloved indie pixel-art game with a warm heart. Never dark, edgy, or neon-heavy. Sunny, inviting, and wholesome.
+- Overall: the output must feel like official vega.io pixel art — the same warm, handcrafted, retro-game style as their SAM the mole illustrations. Bright, lovable, and pixel-perfect.`;
