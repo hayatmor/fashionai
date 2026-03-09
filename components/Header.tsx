@@ -13,12 +13,42 @@ export default function Header() {
       <a href="/" className="font-serif text-2xl tracking-wide text-charcoal">
         Fashion AI
       </a>
-      <nav className="flex items-center gap-8">
+      <nav className="flex items-center gap-6 md:gap-8">
         <a
           href="#studios"
           className="text-sm tracking-widest uppercase text-muted transition-colors hover:text-charcoal"
         >
           Gallery
+        </a>
+        <a
+          href="/ecommerce-batch"
+          className="text-sm tracking-widest uppercase text-muted transition-colors hover:text-charcoal"
+        >
+          Batch Studio
+        </a>
+        <a
+          href="/catalog-builder"
+          className="text-sm tracking-widest uppercase text-muted transition-colors hover:text-charcoal"
+        >
+          Catalog
+        </a>
+        <a
+          href="/color-book-creator"
+          className="text-sm tracking-widest uppercase text-muted transition-colors hover:text-charcoal"
+        >
+          Color Book
+        </a>
+        <a
+          href="/heif-to-jpeg"
+          className="text-sm tracking-widest uppercase text-muted transition-colors hover:text-charcoal"
+        >
+          HEIF → JPEG
+        </a>
+        <a
+          href="/vega-io"
+          className="text-sm tracking-widest uppercase text-muted transition-colors hover:text-charcoal"
+        >
+          Vega.IO Style
         </a>
         <a
           href="/presentation.html"

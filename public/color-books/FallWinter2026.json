@@ -1,0 +1,60 @@
+{
+  "id": "FallWinter2026",
+  "name": "Fall Winter 2026",
+  "season": "Fall Winter 2026",
+  "lines": [
+    {
+      "id": "LINE 81",
+      "name": "FRANCIA LEATHER",
+      "colors": [
+        { "code": "Col.01", "name": "White", "hex": "#FFFFFF" },
+        { "code": "Col.03", "name": "Beige", "hex": "#F5F5DC" },
+        { "code": "Col.51", "name": "Pink", "hex": "#FADADD" },
+        { "code": "Col.33", "name": "Cuoio", "hex": "#6B4423" },
+        { "code": "Col.09", "name": "Taupe", "hex": "#8B8589" },
+        { "code": "Col.50", "name": "Red", "hex": "#B22222" },
+        { "code": "Col.85", "name": "Bluette", "hex": "#4A90D9" },
+        { "code": "Col.99", "name": "Grey", "hex": "#808080" },
+        { "code": "Col.80", "name": "Navy", "hex": "#000080" },
+        { "code": "Col.90", "name": "Black", "hex": "#1a1a1a" }
+      ]
+    },
+    {
+      "id": "LINE 82",
+      "name": "LEATHER LINE 82",
+      "colors": [
+        { "code": "Col.01", "name": "White", "hex": "#FFFFFF" },
+        { "code": "Col.03", "name": "Beige", "hex": "#F5F5DC" },
+        { "code": "Col.33", "name": "Cuoio", "hex": "#6B4423" },
+        { "code": "Col.80", "name": "Navy", "hex": "#000080" },
+        { "code": "Col.90", "name": "Black", "hex": "#1a1a1a" }
+      ]
+    },
+    {
+      "id": "LINE 10",
+      "name": "LEATHER LINE 10",
+      "colors": [
+        { "code": "Col.01", "name": "White", "hex": "#FFFFFF" },
+        { "code": "Col.10", "name": "Silver/Silver", "hex": "#C0C0C0" },
+        { "code": "Col.80", "name": "Navy", "hex": "#000080" },
+        { "code": "Col.90", "name": "Black", "hex": "#1a1a1a" }
+      ]
+    },
+    {
+      "id": "LINE 17",
+      "name": "WOVEN LEATHER",
+      "colors": [
+        { "code": "Col.01", "name": "White", "hex": "#FFFFFF" },
+        { "code": "Col.190", "name": "White/Black", "hex": "#E8E8E8" },
+        { "code": "Col.111", "name": "Silver/White", "hex": "#D3D3D3" },
+        { "code": "Col.10", "name": "Silver/Silver", "hex": "#C0C0C0" },
+        { "code": "Col.110", "name": "Silver/Black", "hex": "#708090" },
+        { "code": "Col.03", "name": "Beige/Beige", "hex": "#F5F5DC" },
+        { "code": "Col.330", "name": "Cuoio/Cuoio", "hex": "#6B4423" },
+        { "code": "Col.385", "name": "Cuoio/Bluette", "hex": "#5A7A9E" },
+        { "code": "Col.50", "name": "Red/Red", "hex": "#B22222" },
+        { "code": "Col.90", "name": "Black", "hex": "#1a1a1a" }
+      ]
+    }
+  ]
+}

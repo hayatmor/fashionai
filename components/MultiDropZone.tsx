@@ -4,14 +4,12 @@ import { useCallback, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Upload, X } from "lucide-react";
 
-const SLOTS = [
-  { key: "top-left", label: "Photo 1 (top-left)" },
-  { key: "top-right", label: "Photo 2 (top-right)" },
-  { key: "bottom-left", label: "Photo 3 (bottom-left)" },
-  { key: "bottom-right", label: "Photo 4 (bottom-right)" },
-] as const;
-
-export type SlotKey = (typeof SLOTS)[number]["key"];
+const CATALOG_SLOT_LABELS = [
+  "Photo 1 (top-left)",
+  "Photo 2 (top-right)",
+  "Photo 3 (bottom-left)",
+  "Photo 4 (bottom-right)",
+];
 
 export interface FileSlot {
   file: File | null;
@@ -19,27 +17,30 @@ export interface FileSlot {
 }
 
 interface MultiDropZoneProps {
-  slots: [FileSlot, FileSlot, FileSlot, FileSlot];
-  onSlotsChange: (slots: [FileSlot, FileSlot, FileSlot, FileSlot]) => void;
+  slots: FileSlot[];
+  onSlotsChange: (slots: FileSlot[]) => void;
+  /** Optional labels; defaults to "Photo 1", "Photo 2", ... or catalog labels for 4 slots */
+  slotLabels?: string[];
 }
 
-export function createEmptySlots(): [FileSlot, FileSlot, FileSlot, FileSlot] {
-  return [
-    { file: null, previewUrl: null },
-    { file: null, previewUrl: null },
-    { file: null, previewUrl: null },
-    { file: null, previewUrl: null },
-  ];
+/** Create N empty slots. Use 4 for catalog, 5 for batch e-commerce, etc. */
+export function createEmptySlots(n: number = 4): FileSlot[] {
+  return Array.from({ length: n }, () => ({ file: null, previewUrl: null }));
 }
 
-export default function MultiDropZone({ slots, onSlotsChange }: MultiDropZoneProps) {
+/** Create 4 slots for catalog grid (top-left, top-right, etc.) */
+export function createCatalogSlots(): [FileSlot, FileSlot, FileSlot, FileSlot] {
+  return createEmptySlots(4) as [FileSlot, FileSlot, FileSlot, FileSlot];
+}
+
+export default function MultiDropZone({ slots, onSlotsChange, slotLabels }: MultiDropZoneProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [dragOverSlot, setDragOverSlot] = useState<number | null>(null);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const updateSlot = useCallback(
     (index: number, file: File | null) => {
-      const next = [...slots] as [FileSlot, FileSlot, FileSlot, FileSlot];
+      const next = slots.map((s) => ({ ...s }));
       if (file) {
         const url = URL.createObjectURL(file);
         next[index] = { file, previewUrl: url };
@@ -84,16 +85,19 @@ export default function MultiDropZone({ slots, onSlotsChange }: MultiDropZonePro
   );
 
   const allFilled = slots.every((s) => s.file !== null);
+  const labels = slotLabels ?? (slots.length === 4 ? CATALOG_SLOT_LABELS : slots.map((_, i) => `Photo ${i + 1}`));
 
   return (
     <div className="space-y-3">
       <p className="text-xs text-muted">
-        Upload 4 product photos for the catalog grid (top-left, top-right, bottom-left, bottom-right).
+        {slots.length === 4
+          ? "Upload 4 product photos for the catalog grid (top-left, top-right, bottom-left, bottom-right)."
+          : `Upload ${slots.length} product photos. Each will get its own generated result.`}
       </p>
-      <div className="grid grid-cols-2 gap-3">
-        {SLOTS.map((slot, index) => (
+      <div className={`grid gap-3 ${slots.length <= 4 ? "grid-cols-2" : "grid-cols-2 sm:grid-cols-3"}`}>
+        {slots.map((slot, index) => (
           <motion.div
-            key={slot.key}
+            key={index}
             onClick={() => !slots[index].file && inputRefs.current[index]?.click()}
             onDragOver={(e) => {
               e.preventDefault();
@@ -127,8 +131,8 @@ export default function MultiDropZone({ slots, onSlotsChange }: MultiDropZonePro
               <div className="relative flex h-full w-full items-center justify-center p-3">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={slots[index].previewUrl}
-                  alt={slot.label}
+                  src={slots[index].previewUrl!}
+                  alt={labels[index]}
                   className="max-h-28 rounded-lg object-contain"
                 />
                 <button
@@ -141,7 +145,7 @@ export default function MultiDropZone({ slots, onSlotsChange }: MultiDropZonePro
             ) : (
               <div className="flex flex-col items-center gap-2 px-4 py-6 text-center">
                 <Upload size={20} className="text-muted/60" strokeWidth={1.5} />
-                <p className="text-xs text-muted">{slot.label}</p>
+                <p className="text-xs text-muted">{labels[index]}</p>
               </div>
             )}
           </motion.div>
@@ -149,7 +153,7 @@ export default function MultiDropZone({ slots, onSlotsChange }: MultiDropZonePro
       </div>
       {!allFilled && (
         <p className="text-xs text-muted">
-          {4 - slots.filter((s) => s.file).length} photo(s) remaining
+          {slots.length - slots.filter((s) => s.file).length} photo(s) remaining
         </p>
       )}
     </div>

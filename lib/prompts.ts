@@ -18,6 +18,55 @@ Camera look: 50–70mm lens, shallow depth of field, studio lighting, profession
 Output: Photorealistic, color-accurate, noise-free, high dynamic range, commercial-ready.
 Emphasize premium leather texture, natural grain, stitching precision, and realistic material depth.`;
 
+export const ECOMMERCE_3_PROMPT = `Create a high-end professional e-commerce product photograph of the uploaded product on a pure white background.
+
+The product must remain 100% identical to the original — no redesign, no shape changes, no logo modification, no hardware changes, no texture alteration.
+
+BACKGROUND:
+100% pure white background (#FFFFFF). No gradient. No grey tint. No texture. No horizon line. No environment. No reflections. Clean cut-out studio look. The final background must be true white, RGB 255,255,255.
+
+PRODUCT QUALITY:
+Enhance leather texture naturally (visible grain, stitching detail). Preserve authentic material finish. Enhance hardware shine subtly. Improve clarity and sharpness. Correct white balance. Remove dust / imperfections. Maintain realistic proportions. Deep but realistic blacks on dark materials.
+
+CAMERA STYLE:
+Straight-on centered composition. Eye-level angle. 85mm lens look. High resolution. Ultra sharp focus. High dynamic range. Professional commercial photography quality. Photorealistic (NOT CGI, NOT illustration).
+
+FINAL OUTPUT:
+Clean luxury catalog look. Prada / Saint Laurent / Net-a-Porter product style. E-commerce ready. Minimal, refined, premium. No artistic filters. No lifestyle elements. No props. No model. Only a subtle natural shadow directly under the product to avoid a floating look. Background must remain 100% pure white (#FFFFFF).
+
+NEGATIVE (avoid): cartoon, illustration, CGI, 3D render, low-res, blurry, noisy, overexposed, oversaturated, deformed product, changed design, extra elements, text, watermark, props, models, lifestyle background, softboxes, lighting equipment, studio equipment, visible lights, grey background, gradient background.`;
+
+export const ECOMMERCE_4_PROMPT = `Create a professional studio e-commerce photograph using the uploaded product image as the ONLY source.
+
+CRITICAL LOCK RULE:
+The product must remain 100% identical to the original upload. Do NOT change strap shape, thickness, or length. Do NOT change hardware size, color, or position. Do NOT change stitching. Do NOT change logo placement or style. Do NOT change proportions. Do NOT change material texture. Do NOT add structure. Do NOT redesign any element. Do NOT smooth or reshape leather folds. The bag must remain pixel-accurate in geometry and design. Use the uploaded image as a locked reference. Do not re-generate the bag. Only improve lighting and replace the background.
+
+WHAT YOU ARE ALLOWED TO DO:
+Improve lighting. Improve exposure. Correct white balance. Remove dust / small imperfections. Enhance clarity and sharpness. Create pure white background. Add soft natural shadow directly under the product.
+
+BACKGROUND REQUIREMENT (VERY IMPORTANT):
+100% pure white background (#FFFFFF). No gradient. No grey tint. No texture. No horizon line. No reflections. No environment. Clean cut-out studio look. The final background must be true white, RGB 255,255,255.
+
+BLACK LEATHER ENHANCEMENT RULE:
+If the product is black leather: Keep blacks deep and rich (true black, not grey). Preserve leather grain texture. Enhance contrast subtly. Add controlled soft highlights to show texture. Do NOT overexpose edges. Do NOT wash out the black. Maintain realistic depth and dimension. Black leather should look premium, luxury, and dimensional — not flat and not shiny plastic.
+
+LIGHTING STYLE:
+Soft diffused studio lighting. Two softboxes (left & right at 45°). Balanced exposure. No harsh reflections. No dramatic shadows. Clean commercial lighting.
+
+FINAL RESULT MUST BE: Professional studio product photography. 100% white background (#FFFFFF). Pixel-identical product. Luxury catalog look. E-commerce ready. Photorealistic. Not CGI. Not stylized. No artistic filters.
+
+NEGATIVE (avoid): cartoon, illustration, CGI, 3D render, low-res, blurry, noisy, overexposed, oversaturated, redesigned product, changed shape, changed hardware, changed stitching, changed logo, altered proportions, grey background, gradient, texture on background, props, models, text, watermark.`;
+
+export const PURE_WHITE_BACKGROUND_PROMPT = `Replace the existing background with a uniform, seamless 100% pure white background (#FFFFFF only, RGB 255,255,255). Remove all gradients, shadows on the background, gray tones, and discoloration. The background must be perfectly flat pure white from edge to edge — no variation, no tint, no vignette.
+
+Maintain natural product edges and fine detail (leather grain, fur, stitching, texture, hardware). Keep lighting realistic. Preserve only a very soft, minimal contact shadow directly beneath the product/bag to avoid a floating look; no other shadows on the white background.
+
+The product must remain 100% identical to the original — same shape, proportions, materials, stitching, hardware, logo, and details. Do NOT redesign or alter the product. Only replace the background with pure white and adjust lighting so the product looks natural on white.
+
+Output: Ultra-high resolution, razor-sharp focus, true-to-life colors, clean edges. Professional e-commerce product photo, Amazon-ready. Photorealistic, not CGI or illustration.
+
+NEGATIVE (avoid): grey background, yellow/warm/cool tint, gradient, banding, texture on background, vignetting, shadows on background, multiple shadows, harsh edges, halos, color spill, cartoon, illustration, CGI, low-res, blurry, redesigned product, props, text, watermark.`;
+
 export const SOCIAL_CREATIVE_PROMPT = `Create a high-quality, square (1:1) Instagram-ready creative image using the uploaded handbag as the main subject.
 The bag must remain 100% identical to the original product – same shape, proportions, texture, stitching, hardware, color, and details. Do not alter the design of the bag in any way.
 Scene & Vibe: A stylish, modern, and slightly edgy lifestyle scene with a cool, urban-luxury vibe. Think fashion-forward, Instagram-worthy, confident, and premium – not commercial, not catalog.
@@ -463,3 +512,28 @@ FORMAT:
 Portrait orientation (A4 or US Letter proportions), vertical layout.
 
 NEGATIVE (avoid): cartoon, illustration, CGI, 3D render, text overlays, watermark, cluttered layout, wrong product design, distorted proportions, low-res, blur.`;
+
+// ---------------------------------------------------------------------------
+// Vega.IO Style — redesign the uploaded image in two styles
+// ---------------------------------------------------------------------------
+
+/** Vega.IO Sam: clean vector / flat illustration style. Uses the uploaded image as subject. */
+export const VEGAIO_SAM_PROMPT = `Using the uploaded image as your reference, redesign it in Vega.IO "Sam" style.
+
+VEGA.IO SAM STYLE (match this aesthetic exactly):
+- Clean, modern vector illustration and flat graphic design. Two-dimensional, no heavy 3D or realism.
+- Limited, muted yet warm color palette: soft blues, periwinkle, terracotta orange, cream, off-white, muted olive green, golden yellow. Light beige or soft blue-gray backgrounds.
+- All shapes have thin, consistent black outlines defining every form. Smooth curves and simple geometric or organic shapes.
+- Minimal shading: at most subtle glossy highlights (e.g. small white oval on balloons or rounded shapes). No complex gradients or photorealistic shadows.
+- Playful, cheerful, and minimalist. Abstract shapes, stylized figures, jigsaw-like pieces, ribbons, clouds, or simple objects. Composition can be simplified and rearranged for maximum impact.
+- Overall: friendly, clean, material-design inspired, suitable for apps or branding. The subject from the uploaded image must be clearly recognizable but restyled in this exact Vega.IO Sam look.`;
+
+/** Vega.IO Pixel Art: classic 8-bit pixel art. Uses the uploaded image as subject. */
+export const VEGAIO_PIXEL_ART_PROMPT = `Using the uploaded image as your reference, redesign it in classic 8-bit pixel art style (Vega.IO Pixel Art).
+
+PIXEL ART STYLE (match exactly):
+- Classic, low-resolution 8-bit pixel art. Every element is made of visible, sharp pixel blocks. No anti-aliasing, no smooth gradients, no soft edges.
+- Clear black outlines (#000000) on every shape. Limited, saturated color palette typical of retro video games.
+- The subject, composition, and key elements from the uploaded image must be recognizable but fully pixelated: characters, objects, and backgrounds converted into blocky pixels.
+- Sharp pixel grid visible everywhere. Clean, bright, video-game-like. Can add subtle pixel-dust or simple background elements (grass tufts, clouds, etc.) if it fits the scene.
+- Output must look like an authentic retro game sprite or scene. Keep the same subject and idea as the upload; only the visual style changes to 8-bit pixel art.`;

@@ -3,13 +3,7 @@ import { GoogleGenAI } from "@google/genai";
 
 export const maxDuration = 60;
 
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: "20mb",
-    },
-  },
-};
+export const maxBodySize = "20mb";
 
 function getApiKey(): string | null {
   const key = process.env.GEMINI_API_KEY?.trim();
@@ -51,7 +45,7 @@ function buildPartsMulti(
 }
 
 const IMAGE_MODEL =
-  process.env.GEMINI_IMAGE_MODEL || "gemini-2.5-flash-image";
+  process.env.GEMINI_IMAGE_MODEL || "gemini-3-pro-image-preview";
 
 async function tryGenerate(
   apiKey: string,
@@ -99,14 +93,10 @@ export async function POST(req: NextRequest) {
         );
       }
       parts = buildPartsMulti(prompt, images);
-    } else {
-      if (!imageBase64) {
-        return NextResponse.json(
-          { error: "Missing image or prompt" },
-          { status: 400 },
-        );
-      }
+    } else if (imageBase64) {
       parts = buildParts(prompt, imageBase64, mimeType);
+    } else {
+      parts = [{ text: prompt }];
     }
 
     const apiKey = getApiKey();

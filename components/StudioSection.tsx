@@ -5,6 +5,9 @@ import StudioModule from "./StudioModule";
 import {
   ECOMMERCE_PROMPT,
   ECOMMERCE_2_PROMPT,
+  ECOMMERCE_3_PROMPT,
+  ECOMMERCE_4_PROMPT,
+  PURE_WHITE_BACKGROUND_PROMPT,
   SOCIAL_CREATIVE_PROMPT,
   EDITORIAL_MODEL_PROMPT,
   LIFESTYLE_EDITORIAL_PROMPT,
@@ -22,6 +25,9 @@ import {
 const modules = [
   { title: "E-Commerce Studio", prompt: ECOMMERCE_PROMPT },
   { title: "E-Commerce Studio 2", prompt: ECOMMERCE_2_PROMPT },
+  { title: "E-Commerce Studio 3", prompt: ECOMMERCE_3_PROMPT, maxFiles: 5, oneResultPerFile: true },
+  { title: "E-Commerce Studio 4", prompt: ECOMMERCE_4_PROMPT },
+  { title: "100% Pure White Background", prompt: PURE_WHITE_BACKGROUND_PROMPT },
   { title: "Social Creative (1:1)", prompt: SOCIAL_CREATIVE_PROMPT },
   { title: "Editorial Model Shot", prompt: EDITORIAL_MODEL_PROMPT },
   { title: "Lifestyle Editorial", prompt: LIFESTYLE_EDITORIAL_PROMPT },
@@ -57,6 +63,7 @@ export default function StudioSection() {
             index={i}
             maxFiles={mod.maxFiles}
             useCompose={mod.useCompose}
+            oneResultPerFile={mod.oneResultPerFile}
           />
         ))}
       </div>

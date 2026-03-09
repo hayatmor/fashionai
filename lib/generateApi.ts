@@ -36,6 +36,17 @@ export async function generateImage(
   return handleGenerateResponse(res);
 }
 
+/** Generate image from text prompt only (no input image). Used e.g. for Vega.IO style scenes. */
+export async function generateImageFromPrompt(prompt: string): Promise<GenerateResult> {
+  const res = await fetch("/api/generate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt }),
+  });
+
+  return handleGenerateResponse(res);
+}
+
 export async function generateImageMulti(
   files: File[],
   prompt: string,
@@ -59,9 +70,22 @@ export async function generateImageMulti(
   return handleGenerateResponse(res);
 }
 
-/** Composes 4 photos into a catalog layout — no AI, photos preserved exactly. */
+export interface CatalogProductData {
+  page?: string;
+  article?: string;
+  size?: string;
+  price?: string;
+}
+
+/** Composes 1, 2, or 4 photos into an A4 catalog layout. Pass textImages and lineTitleImage (base64 PNG from browser canvas) to render CSV data. */
 export async function generateCatalogCompose(
   files: File[],
+  options?: {
+    productData?: CatalogProductData[];
+    lineTitle?: string;
+    textImages?: string[];
+    lineTitleImage?: string;
+  }
 ): Promise<GenerateResult> {
   const images = await Promise.all(
     files.map(async (f) => ({
@@ -70,10 +94,16 @@ export async function generateCatalogCompose(
     })),
   );
 
+  const body: Record<string, unknown> = { images };
+  if (options?.productData?.length) body.productData = options.productData;
+  if (options?.lineTitle) body.lineTitle = options.lineTitle;
+  if (options?.textImages?.length) body.textImages = options.textImages;
+  if (options?.lineTitleImage) body.lineTitleImage = options.lineTitleImage;
+
   const res = await fetch("/api/catalog-compose", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ images }),
+    body: JSON.stringify(body),
   });
 
   return handleGenerateResponse(res);

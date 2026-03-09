@@ -10,6 +10,8 @@ interface StatusBarProps {
   status: Status;
   error?: string | null;
   startTime?: number | null;
+  /** When set, shows "Generating X of Y..." during batch */
+  batchProgress?: { current: number; total: number } | null;
 }
 
 function ElapsedTimer({ startTime }: { startTime: number }) {
@@ -34,7 +36,7 @@ function ElapsedTimer({ startTime }: { startTime: number }) {
   );
 }
 
-export default function StatusBar({ status, error, startTime }: StatusBarProps) {
+export default function StatusBar({ status, error, startTime, batchProgress }: StatusBarProps) {
   if (status === "idle") return null;
 
   return (
@@ -52,7 +54,11 @@ export default function StatusBar({ status, error, startTime }: StatusBarProps) 
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-sm text-charcoal">
                 <Loader2 size={16} className="animate-spin" />
-                <span>Generating with Nano Banana...</span>
+                <span>
+                  {batchProgress
+                    ? `Generating ${batchProgress.current} of ${batchProgress.total}...`
+                    : "Generating with Nano Banana..."}
+                </span>
               </div>
               {startTime && <ElapsedTimer startTime={startTime} />}
             </div>
